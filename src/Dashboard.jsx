@@ -1,17 +1,24 @@
 import React, { useState } from "react";
 
-function Dashboard({ user, gigs, onDeleteGig }) {
+function Dashboard({
+  user,
+  gigs,
+  proposals = [],
+  onDeleteGig,
+  onAcceptProposal
+}) {
+  const [activeTab, setActiveTab] =
+    useState("gigs");
 
-  const [activeTab, setActiveTab] = useState("gigs");
+  // ================= MY GIGS =================
 
-  // Show only gigs posted by the user
   const myGigs = gigs.filter(
     (gig) => gig.postedBy === "You"
   );
 
-  // Delete gig
-  const handleDelete = (id) => {
+  // ================= DELETE GIG =================
 
+  const handleDelete = (id) => {
     const confirmDelete = window.confirm(
       "Are you sure you want to delete this gig?"
     );
@@ -33,15 +40,15 @@ function Dashboard({ user, gigs, onDeleteGig }) {
         </p>
 
         <h1>
-          Welcome, {user.name} 👋
+          Welcome, {user?.name || "User"} 👋
         </h1>
 
         <p>
-          Manage your projects and proposals from one place.
+          Manage your projects and proposals
+          from one place.
         </p>
 
       </div>
-
 
       {/* ================= TABS ================= */}
 
@@ -53,11 +60,12 @@ function Dashboard({ user, gigs, onDeleteGig }) {
               ? "active-tab"
               : ""
           }
-          onClick={() => setActiveTab("gigs")}
+          onClick={() =>
+            setActiveTab("gigs")
+          }
         >
           My Gigs
         </button>
-
 
         <button
           className={
@@ -65,15 +73,18 @@ function Dashboard({ user, gigs, onDeleteGig }) {
               ? "active-tab"
               : ""
           }
-          onClick={() => setActiveTab("proposals")}
+          onClick={() =>
+            setActiveTab("proposals")
+          }
         >
           My Proposals
         </button>
 
       </div>
 
-
-      {/* ================= MY GIGS ================= */}
+      {/* ================================================= */}
+      {/* MY GIGS */}
+      {/* ================================================= */}
 
       {activeTab === "gigs" && (
 
@@ -82,11 +93,16 @@ function Dashboard({ user, gigs, onDeleteGig }) {
           <div className="section-heading">
 
             <div>
-              <h2>My Posted Gigs</h2>
+
+              <h2>
+                My Posted Gigs
+              </h2>
 
               <p>
-                Projects you have posted on GigNova
+                Projects you have posted
+                on GigNova
               </p>
+
             </div>
 
             <span className="gig-count">
@@ -94,7 +110,6 @@ function Dashboard({ user, gigs, onDeleteGig }) {
             </span>
 
           </div>
-
 
           {/* NO GIGS */}
 
@@ -111,15 +126,14 @@ function Dashboard({ user, gigs, onDeleteGig }) {
               </h3>
 
               <p>
-                Start by posting your first project
-                and connect with talented freelancers.
+                Start by posting your first
+                project and connect with
+                talented freelancers.
               </p>
 
             </div>
 
           ) : (
-
-            /* ================= GIG CARDS ================= */
 
             <div className="dashboard-gig-grid">
 
@@ -129,8 +143,6 @@ function Dashboard({ user, gigs, onDeleteGig }) {
                   className="dashboard-gig-card"
                   key={gig.id}
                 >
-
-                  {/* TOP */}
 
                   <div className="gig-top">
 
@@ -144,23 +156,14 @@ function Dashboard({ user, gigs, onDeleteGig }) {
 
                   </div>
 
-
-                  {/* TITLE */}
-
                   <h3>
                     {gig.title}
                   </h3>
-
-
-                  {/* DESCRIPTION */}
 
                   <p className="dashboard-description">
                     {gig.description ||
                       "No description available."}
                   </p>
-
-
-                  {/* INFORMATION */}
 
                   <div className="gig-info">
 
@@ -176,7 +179,6 @@ function Dashboard({ user, gigs, onDeleteGig }) {
 
                     </div>
 
-
                     <div>
 
                       <span>
@@ -184,13 +186,13 @@ function Dashboard({ user, gigs, onDeleteGig }) {
                       </span>
 
                       <strong>
-                        {gig.experience || "Any"}
+                        {gig.experience ||
+                          "Any"}
                       </strong>
 
                     </div>
 
                   </div>
-
 
                   {/* SKILLS */}
 
@@ -198,42 +200,47 @@ function Dashboard({ user, gigs, onDeleteGig }) {
 
                     <div className="skills">
 
-                      {gig.skills
-                        .split(",")
-                        .map((skill, index) => (
-
+                      {(Array.isArray(gig.skills)
+                        ? gig.skills
+                        : gig.skills
+                            .split(",")
+                            .map(
+                              (skill) =>
+                                skill.trim()
+                            )
+                      ).map(
+                        (skill, index) => (
                           <span key={index}>
-                            {skill.trim()}
+                            {skill}
                           </span>
-
-                        ))}
+                        )
+                      )}
 
                     </div>
 
                   )}
-
 
                   {/* DEADLINE */}
 
                   {gig.deadline && (
 
                     <div className="gig-deadline">
-
-                      📅 Deadline: {gig.deadline}
-
+                      📅 Deadline:{" "}
+                      {gig.deadline}
                     </div>
 
                   )}
 
-
-                  {/* DELETE BUTTON */}
+                  {/* DELETE */}
 
                   <div className="gig-actions">
 
                     <button
                       className="delete-gig-btn"
                       onClick={() =>
-                        handleDelete(gig.id)
+                        handleDelete(
+                          gig.id
+                        )
                       }
                     >
                       🗑 Delete Gig
@@ -253,8 +260,9 @@ function Dashboard({ user, gigs, onDeleteGig }) {
 
       )}
 
-
-      {/* ================= PROPOSALS ================= */}
+      {/* ================================================= */}
+      {/* MY PROPOSALS */}
+      {/* ================================================= */}
 
       {activeTab === "proposals" && (
 
@@ -269,30 +277,121 @@ function Dashboard({ user, gigs, onDeleteGig }) {
               </h2>
 
               <p>
-                Proposals you have sent to clients
+                Proposals you have sent
+                to clients
               </p>
 
             </div>
 
+            <span className="gig-count">
+              {proposals.length} Proposals
+            </span>
+
           </div>
 
+          {/* NO PROPOSALS */}
 
-          <div className="empty-dashboard">
+          {proposals.length === 0 ? (
 
-            <div className="empty-icon">
-              💼
+            <div className="empty-dashboard">
+
+              <div className="empty-icon">
+                💼
+              </div>
+
+              <h3>
+                No proposals yet
+              </h3>
+
+              <p>
+                Browse available gigs and
+                send your first proposal.
+              </p>
+
             </div>
 
-            <h3>
-              No proposals yet
-            </h3>
+          ) : (
 
-            <p>
-              Browse available gigs and send your
-              first proposal.
-            </p>
+            <div className="dashboard-gig-grid">
 
-          </div>
+              {proposals.map(
+                (proposal) => (
+
+                  <div
+                    className="dashboard-gig-card"
+                    key={proposal.id}
+                  >
+
+                    <div className="gig-top">
+
+                      <span className="gig-category">
+                        Proposal
+                      </span>
+
+                      <span className="gig-status">
+                        ●{" "}
+                        {proposal.status ||
+                          "Pending"}
+                      </span>
+
+                    </div>
+
+                    <h3>
+                      {proposal.gigTitle}
+                    </h3>
+
+                    <p className="dashboard-description">
+                      {proposal.message}
+                    </p>
+
+                    <div className="gig-info">
+
+                      <div>
+
+                        <span>
+                          Bid Amount
+                        </span>
+
+                        <strong>
+                          {proposal.bidAmount}
+                        </strong>
+
+                      </div>
+
+                      <div>
+
+                        <span>
+                          Freelancer
+                        </span>
+
+                        <strong>
+                          {proposal.freelancerName ||
+                            "You"}
+                        </strong>
+
+                      </div>
+
+                    </div>
+
+                    {proposal.submittedAt && (
+
+                      <div className="gig-deadline">
+                        📅 Submitted:{" "}
+                        {new Date(
+                          proposal.submittedAt
+                        ).toLocaleDateString()}
+                      </div>
+
+                    )}
+
+                  </div>
+
+                )
+              )}
+
+            </div>
+
+          )}
 
         </div>
 
