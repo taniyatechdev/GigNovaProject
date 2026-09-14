@@ -1,122 +1,395 @@
-import { useState } from 'react'
-import heroImg from './assets/hero.png'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import './App.css'
+import React, { useState } from "react";
+
+import Navbar from "./Navbar";
+
+import Home from "./Home";
+import BrowseGigs from "./BrowseGigs";
+import PostGig from "./PostGig";
+import GigDetails from "./GigDetails";
+import About from "./About";
+import Contact from "./Contact";
+import Login from "./Login";
+import Signup from "./signup";
+import Dashboard from "./Dashboard";
 
 function App() {
-  const [count, setCount] = useState(0)
+
+  // ================= PAGE =================
+
+  const [page, setPage] = useState("home");
+
+  // ================= SELECTED GIG =================
+
+  const [selectedGig, setSelectedGig] = useState(null);
+
+  // ================= LOGGED-IN USER =================
+
+  const [user, setUser] = useState(() => {
+
+    const savedUser = localStorage.getItem("gignovaLoggedIn");
+
+    if (savedUser) {
+      try {
+        return JSON.parse(savedUser);
+      } catch (error) {
+        console.error("Error loading logged-in user:", error);
+        localStorage.removeItem("gignovaLoggedIn");
+      }
+    }
+
+    return null;
+  });
+
+
+  // ================= GIG DATA =================
+
+  const [gigs, setGigs] = useState(() => {
+
+    const savedGigs = localStorage.getItem("gignovaGigs");
+
+    if (savedGigs) {
+
+      try {
+        return JSON.parse(savedGigs);
+      } catch (error) {
+        console.error("Error loading gigs:", error);
+      }
+
+    }
+
+    // Default gigs for first time
+    const defaultGigs = [
+
+      {
+        id: 1,
+        title: "Build a React Website",
+        category: "Web Development",
+        description:
+          "Need a responsive React website for a small business.",
+        budget: "₹10,000",
+        skills: "React, JavaScript, CSS",
+        experience: "Intermediate",
+        deadline: "2026-10-15",
+        postedBy: "Rahul",
+        status: "open"
+      },
+
+      {
+        id: 2,
+        title: "Design a Logo",
+        category: "Graphic Design",
+        description:
+          "Looking for a creative logo for a new brand.",
+        budget: "₹3,000",
+        skills: "Figma, Photoshop, Illustrator",
+        experience: "Beginner",
+        deadline: "2026-10-10",
+        postedBy: "Priya",
+        status: "open"
+      },
+
+      {
+        id: 3,
+        title: "Write a Blog",
+        category: "Content Writing",
+        description:
+          "Write an informative blog article about technology.",
+        budget: "₹2,000",
+        skills: "Writing, SEO, Research",
+        experience: "Intermediate",
+        deadline: "2026-10-05",
+        postedBy: "Aman",
+        status: "open"
+      }
+
+    ];
+
+    // Save default gigs
+    localStorage.setItem(
+      "gignovaGigs",
+      JSON.stringify(defaultGigs)
+    );
+
+    return defaultGigs;
+  });
+
+
+
+  const addProposal = (newProposal) => {
+  setProposals((oldProposals) => {
+    const updatedProposals = [
+      ...oldProposals,
+      newProposal
+    ];
+
+    localStorage.setItem(
+      "gignovaProposals",
+      JSON.stringify(updatedProposals)
+    );
+
+    return updatedProposals;
+  });
+};
+
+  // ================= ADD GIG =================
+
+  const addGig = (newGig) => {
+
+    const gigWithStatus = {
+      ...newGig,
+      status: "open"
+    };
+
+    setGigs((oldGigs) => {
+
+      const updatedGigs = [
+        ...oldGigs,
+        gigWithStatus
+      ];
+
+      localStorage.setItem(
+        "gignovaGigs",
+        JSON.stringify(updatedGigs)
+      );
+
+      return updatedGigs;
+    });
+
+    setPage("browse");
+  };
+
+
+  // ================= DELETE GIG =================
+
+  const deleteGig = (id) => {
+
+    setGigs((oldGigs) => {
+
+      const updatedGigs = oldGigs.filter(
+        (gig) => gig.id !== id
+      );
+
+      localStorage.setItem(
+        "gignovaGigs",
+        JSON.stringify(updatedGigs)
+      );
+
+      return updatedGigs;
+    });
+
+  };
+
+
+  // ================= ACCEPT PROPOSAL =================
+
+  const acceptProposal = (gigId, proposalId) => {
+
+    setGigs((oldGigs) => {
+
+      const updatedGigs = oldGigs.map((gig) => {
+
+        if (gig.id === gigId) {
+
+          return {
+            ...gig,
+            status: "accepted",
+            acceptedProposalId: proposalId
+          };
+
+        }
+
+        return gig;
+
+      });
+
+      localStorage.setItem(
+        "gignovaGigs",
+        JSON.stringify(updatedGigs)
+      );
+
+      return updatedGigs;
+
+    });
+
+    // Update selected gig also
+    if (selectedGig && selectedGig.id === gigId) {
+
+      setSelectedGig({
+        ...selectedGig,
+        status: "accepted",
+        acceptedProposalId: proposalId
+      });
+
+    }
+
+  };
+
+
+
+  const [proposals, setProposals] = useState(() => {
+  const savedProposals = localStorage.getItem("gignovaProposals");
+
+  if (savedProposals) {
+    try {
+      return JSON.parse(savedProposals);
+    } catch (error) {
+      console.error("Error loading proposals:", error);
+    }
+  }
+
+  return [];
+});
+  // ================= VIEW GIG =================
+
+  const viewGig = (gig) => {
+
+    setSelectedGig(gig);
+
+    setPage("details");
+
+  };
+
+
+  // ================= LOGOUT =================
+
+  const logout = () => {
+
+    // Only remove LOGIN SESSION
+    // DO NOT remove gigs
+
+    localStorage.removeItem("gignovaLoggedIn");
+
+    setUser(null);
+
+    setPage("home");
+
+  };
+
+
+  // ================= RENDER =================
 
   return (
-    <>
-      <section id="center">
-        <div className="hero">
-          <img src={heroImg} className="base" width="170" height="179" alt="" />
-          <img src={reactLogo} className="framework" alt="React logo" />
-          <img src={viteLogo} className="vite" alt="Vite logo" />
-        </div>
-        <div>
-          <h1>Get started</h1>
-          <p>
-            Edit <code>src/App.jsx</code> and save to test <code>HMR</code>
-          </p>
-        </div>
-        <button
-          type="button"
-          className="counter"
-          onClick={() => setCount((count) => count + 1)}
-        >
-          Count is {count}
-        </button>
-      </section>
 
-      <div className="ticks"></div>
+    <div className="app">
 
-      <section id="next-steps">
-        <div id="docs">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#documentation-icon"></use>
-          </svg>
-          <h2>Documentation</h2>
-          <p>Your questions, answered</p>
-          <ul>
-            <li>
-              <a href="https://vite.dev/" target="_blank">
-                <img className="logo" src={viteLogo} alt="" />
-                Explore Vite
-              </a>
-            </li>
-            <li>
-              <a href="https://react.dev/" target="_blank">
-                <img className="button-icon" src={reactLogo} alt="" />
-                Learn more
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div id="social">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#social-icon"></use>
-          </svg>
-          <h2>Connect with us</h2>
-          <p>Join the Vite community</p>
-          <ul>
-            <li>
-              <a href="https://github.com/vitejs/vite" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#github-icon"></use>
-                </svg>
-                GitHub
-              </a>
-            </li>
-            <li>
-              <a href="https://chat.vite.dev/" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#discord-icon"></use>
-                </svg>
-                Discord
-              </a>
-            </li>
-            <li>
-              <a href="https://x.com/vite_js" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#x-icon"></use>
-                </svg>
-                X.com
-              </a>
-            </li>
-            <li>
-              <a href="https://bsky.app/profile/vite.dev" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#bluesky-icon"></use>
-                </svg>
-                Bluesky
-              </a>
-            </li>
-          </ul>
-        </div>
-      </section>
+      {/* ================= NAVBAR ================= */}
 
-      <div className="ticks"></div>
-      <section id="spacer"></section>
-    </>
-  )
+      <Navbar
+        setPage={setPage}
+        user={user}
+        logout={logout}
+      />
+
+
+      {/* ================= HOME ================= */}
+
+      {page === "home" && (
+        <Home setPage={setPage} />
+      )}
+
+
+      {/* ================= BROWSE GIGS ================= */}
+
+      {page === "browse" && (
+
+        <BrowseGigs
+          gigs={gigs.filter(
+            (gig) => gig.status !== "accepted"
+          )}
+          onView={viewGig}
+        />
+
+      )}
+
+
+      {/* ================= POST GIG ================= */}
+
+      {page === "post" && (
+
+        user ? (
+
+          <PostGig
+            onAddGig={addGig}
+          />
+
+        ) : (
+
+          <Login
+            setPage={setPage}
+            setUser={setUser}
+          />
+
+        )
+
+      )}
+
+
+      {/* ================= GIG DETAILS ================= */}
+
+      {page === "details" && selectedGig && (
+
+        <GigDetails
+          gig={selectedGig}
+          onBack={() => setPage("browse")}
+          onAcceptProposal={acceptProposal}
+        />
+
+      )}
+
+
+      {/* ================= ABOUT ================= */}
+
+      {page === "about" && (
+        <About setPage={setPage} />
+      )}
+
+
+      {/* ================= CONTACT ================= */}
+
+      {page === "contact" && (
+        <Contact />
+      )}
+
+
+      {/* ================= LOGIN ================= */}
+
+      {page === "login" && !user && (
+
+        <Login
+          setPage={setPage}
+          setUser={setUser}
+        />
+
+      )}
+
+
+      {/* ================= SIGNUP ================= */}
+
+      {page === "signup" && !user && (
+
+        <Signup
+          setPage={setPage}
+        />
+
+      )}
+
+
+      {/* ================= DASHBOARD ================= */}
+
+      {page === "dashboard" && user && (
+
+        <Dashboard
+          user={user}
+          gigs={gigs}
+          onDeleteGig={deleteGig}
+          onAcceptProposal={acceptProposal}
+        />
+
+      )}
+
+    </div>
+
+  );
 }
 
-export default App
+export default App;
