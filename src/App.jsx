@@ -29,6 +29,7 @@ import Notifications from "./Notifications";
 import ProtectedRoute from "./ProtectedRoute";
 import GigDetailsRoute from "./GigDetailsRoute";
 import SavedGigs from "./SavedGigs";
+import NotFound from "./NotFound";
 
 import { useGigNova } from "./context/GigNovaContext";
 
@@ -378,7 +379,9 @@ export default function App() {
           path="*"
           element={<Navigate to="/" replace />}
         />
+        <Route path="*" element={<NotFound />} />
       </Routes>
+      
     </>
   );
 }
