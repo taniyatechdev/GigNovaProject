@@ -852,7 +852,7 @@ select {
 }
 
 .tips-card li::before {
-  content: "Ã¢â‚¬Â¢";
+  content: "•";
 
   position: absolute;
 

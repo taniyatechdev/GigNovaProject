@@ -1,464 +1,361 @@
-
-import React from "react";
-import {
-  Routes,
-  Route,
-  Navigate,
-  useNavigate,
-  useParams,
-} from "react-router-dom";
+import React, { useState } from "react";
 
 import Navbar from "./Navbar";
 import Home from "./Home";
 import BrowseGigs from "./BrowseGigs";
 import PostGig from "./PostGig";
+import GigDetails from "./GigDetails";
 import About from "./About";
 import Contact from "./Contact";
 import Login from "./Login";
 import Signup from "./signup";
 import Dashboard from "./Dashboard";
-import Profile from "./MyProfile";
-import Projects from "./Projects";
-import Reviews from "./Reviews";
-import Chat from "./Chat";
-import FindFreelancers from "./FindFreelancers";
-import Invitations from "./Invitations";
-import PaymentCenter from "./PaymentCenter";
-import FreelancerEarnings from "./FreelancerEarnings";
-import Notifications from "./Notifications";
-import ProtectedRoute from "./ProtectedRoute";
-import GigDetailsRoute from "./GigDetailsRoute";
-import SavedGigs from "./SavedGigs";
 
-import { useGigNova } from "./context/GigNovaContext";
+function App() {
+  // ================= PAGE =================
 
-const sameId = (a, b) =>
-  a != null &&
-  b != null &&
-  String(a).trim().toLowerCase() ===
-    String(b).trim().toLowerCase();
+  const [page, setPage] = useState("home");
 
-const PAGE_PATHS = {
-  home: "/",
-  browse: "/browse",
-  gigs: "/browse",
-  saved: "/saved",
-  "saved-gigs": "/saved",
+  // ================= SELECTED GIG =================
 
-  freelancers: "/freelancers",
-  "find-freelancers": "/freelancers",
+  const [selectedGig, setSelectedGig] = useState(null);
 
-  invitations: "/invitations",
-  notifications: "/notifications",
+  // ================= USER =================
 
-  payments: "/payments",
-  earnings: "/earnings",
-  "freelancer-earnings": "/earnings",
+  const [user, setUser] = useState(() => {
+    const savedUser = localStorage.getItem("gignovaLoggedIn");
 
-  post: "/post",
-  about: "/about",
-  contact: "/contact",
-  login: "/login",
-  signup: "/signup",
+    if (savedUser) {
+      try {
+        return JSON.parse(savedUser);
+      } catch (error) {
+        console.error(
+          "Error loading logged-in user:",
+          error
+        );
 
-  dashboard: "/dashboard",
-  profile: "/profile",
-  projects: "/projects",
-  reviews: "/reviews",
-  "project-chat": "/projects",
-};
+        localStorage.removeItem("gignovaLoggedIn");
+      }
+    }
 
-export default function App() {
-  const navigate = useNavigate();
+    return null;
+  });
 
-  const {
-    user,
-    setUser,
-    logoutUser,
+  // ================= GIGS =================
 
-    gigs = [],
-    addGig,
-    deleteGig,
+  const [gigs, setGigs] = useState(() => {
+    const savedGigs =
+      localStorage.getItem("gignovaGigs");
 
-    proposals = [],
-    addProposal,
-    acceptProposal,
-    rejectProposal,
+    if (savedGigs) {
+      try {
+        return JSON.parse(savedGigs);
+      } catch (error) {
+        console.error(
+          "Error loading gigs:",
+          error
+        );
+      }
+    }
 
-    projects = [],
-    updateProjectStatus,
+    const defaultGigs = [
+      {
+        id: 1,
+        title: "Build a React Website",
+        category: "Web Development",
+        description:
+          "Need a responsive React website for a small business.",
+        budget: "₹10,000",
+        skills: "React, JavaScript, CSS",
+        experience: "Intermediate",
+        deadline: "2026-10-15",
+        postedBy: "Rahul",
+        status: "open"
+      },
+      {
+        id: 2,
+        title: "Design a Logo",
+        category: "Graphic Design",
+        description:
+          "Looking for a creative logo for a new brand.",
+        budget: "₹3,000",
+        skills:
+          "Figma, Photoshop, Illustrator",
+        experience: "Beginner",
+        deadline: "2026-10-10",
+        postedBy: "Priya",
+        status: "open"
+      },
+      {
+        id: 3,
+        title: "Write a Blog",
+        category: "Content Writing",
+        description:
+          "Write an informative blog article about technology.",
+        budget: "₹2,000",
+        skills:
+          "Writing, SEO, Research",
+        experience: "Intermediate",
+        deadline: "2026-10-05",
+        postedBy: "Aman",
+        status: "open"
+      }
+    ];
 
-    reviews = [],
-    addReview,
-
-    storageError,
-  } = useGigNova();
-
-  const setPage = (page) => {
-    if (typeof page !== "string") return;
-
-    navigate(
-      PAGE_PATHS[page] ||
-        (page.startsWith("/") ? page : "/")
+    localStorage.setItem(
+      "gignovaGigs",
+      JSON.stringify(defaultGigs)
     );
+
+    return defaultGigs;
+  });
+
+  // ================= PROPOSALS =================
+
+  const [proposals, setProposals] = useState(() => {
+    const savedProposals =
+      localStorage.getItem("gignovaProposals");
+
+    if (savedProposals) {
+      try {
+        return JSON.parse(savedProposals);
+      } catch (error) {
+        console.error(
+          "Error loading proposals:",
+          error
+        );
+      }
+    }
+
+    return [];
+  });
+
+  // ================= ADD PROPOSAL =================
+
+  const addProposal = (newProposal) => {
+    setProposals((oldProposals) => {
+      const updatedProposals = [
+        ...oldProposals,
+        newProposal
+      ];
+
+      localStorage.setItem(
+        "gignovaProposals",
+        JSON.stringify(updatedProposals)
+      );
+
+      return updatedProposals;
+    });
   };
 
-  const handleLogin = (loggedInUser) => {
-    setUser(loggedInUser);
-    navigate("/dashboard");
+  // ================= ADD GIG =================
+
+  const addGig = (newGig) => {
+    const gigWithStatus = {
+      ...newGig,
+      status: "open"
+    };
+
+    setGigs((oldGigs) => {
+      const updatedGigs = [
+        ...oldGigs,
+        gigWithStatus
+      ];
+
+      localStorage.setItem(
+        "gignovaGigs",
+        JSON.stringify(updatedGigs)
+      );
+
+      return updatedGigs;
+    });
+
+    setPage("browse");
   };
 
-  const handleLogout = () => {
-    logoutUser();
-    navigate("/");
+  // ================= DELETE GIG =================
+
+  const deleteGig = (id) => {
+    setGigs((oldGigs) => {
+      const updatedGigs = oldGigs.filter(
+        (gig) => gig.id !== id
+      );
+
+      localStorage.setItem(
+        "gignovaGigs",
+        JSON.stringify(updatedGigs)
+      );
+
+      return updatedGigs;
+    });
   };
 
-  const handleAddGig = async (gig) => {
-    if (!String(gig?.title || "").trim()) return;
-    await addGig(gig);
+  // ================= ACCEPT PROPOSAL =================
+
+  const acceptProposal = (
+    gigId,
+    proposalId
+  ) => {
+    setGigs((oldGigs) => {
+      const updatedGigs = oldGigs.map((gig) => {
+        if (gig.id === gigId) {
+          return {
+            ...gig,
+            status: "accepted",
+            acceptedProposalId: proposalId
+          };
+        }
+
+        return gig;
+      });
+
+      localStorage.setItem(
+        "gignovaGigs",
+        JSON.stringify(updatedGigs)
+      );
+
+      return updatedGigs;
+    });
+
+    if (
+      selectedGig &&
+      selectedGig.id === gigId
+    ) {
+      setSelectedGig({
+        ...selectedGig,
+        status: "accepted",
+        acceptedProposalId: proposalId
+      });
+    }
   };
 
-  const handleViewGig = (gig) => {
-    if (gig?.id == null) return;
+  // ================= VIEW GIG =================
 
-    navigate(
-      `/gigs/${encodeURIComponent(gig.id)}`,
-      { state: { gig } }
+  const viewGig = (gig) => {
+    setSelectedGig(gig);
+    setPage("details");
+  };
+
+  // ================= LOGOUT =================
+
+  const logout = () => {
+    localStorage.removeItem(
+      "gignovaLoggedIn"
     );
+
+    setUser(null);
+    setPage("home");
   };
 
-  const openProjectChat = (project) => {
-    if (project?.id == null) return;
-
-    navigate(
-      `/project-chat/${encodeURIComponent(project.id)}`
-    );
-  };
-
-  const protect = (element) => (
-    <ProtectedRoute>{element}</ProtectedRoute>
-  );
+  // ================= UI =================
 
   return (
-    <>
+    <div className="app">
+
+      {/* NAVBAR */}
+
       <Navbar
         setPage={setPage}
         user={user}
-        logout={handleLogout}
-        onLogout={handleLogout}
+        logout={logout}
       />
 
-      {storageError && (
-        <div
-          role="alert"
-          style={{
-            padding: "12px 6%",
-            background: "#fff3e0",
-            color: "#8a4b08",
-          }}
-        >
-          {String(storageError)}
-        </div>
+      {/* HOME */}
+
+      {page === "home" && (
+        <Home setPage={setPage} />
       )}
 
-      <Routes>
-        {/* PUBLIC PAGES */}
+      {/* BROWSE GIGS */}
 
-        <Route
-          path="/"
-          element={
-            <Home
-              setPage={setPage}
-              onViewGig={handleViewGig}
-            />
-          }
-        />
-
-        <Route
-          path="/browse"
-          element={
-            <BrowseGigs
-              gigs={gigs.filter(
-                (gig) =>
-                  !gig.status ||
-                  String(gig.status).toLowerCase() ===
-                    "open"
-              )}
-              onView={handleViewGig}
-              onViewGig={handleViewGig}
-            />
-          }
-        />
-
-        <Route
-          path="/gigs/:gigId"
-          element={<GigDetailsRoute />}
-        />
-
-        <Route
-          path="/saved"
-          element={<SavedGigs />}
-        />
-
-        <Route
-          path="/freelancers"
-          element={
-            <FindFreelancers
-              proposals={proposals}
-              projects={projects}
-              reviews={reviews}
-            />
-          }
-        />
-
-        <Route
-          path="/login"
-          element={
-            user ? (
-              <Navigate to="/dashboard" replace />
-            ) : (
-              <Login
-                onNavigate={setPage}
-                onLoginSuccess={handleLogin}
-              />
-            )
-          }
-        />
-
-        <Route
-          path="/signup"
-          element={
-            user ? (
-              <Navigate to="/dashboard" replace />
-            ) : (
-              <Signup onNavigate={setPage} />
-            )
-          }
-        />
-
-        <Route
-          path="/about"
-          element={<About setPage={setPage} />}
-        />
-
-        <Route
-          path="/contact"
-          element={<Contact />}
-        />
-
-        {/* PROTECTED PAGES */}
-
-        <Route
-          path="/post"
-          element={protect(
-            <PostGig onAddGig={handleAddGig} />
+      {page === "browse" && (
+        <BrowseGigs
+          gigs={gigs.filter(
+            (gig) =>
+              gig.status !== "accepted"
           )}
+          onView={viewGig}
         />
+      )}
 
-        <Route
-          path="/dashboard"
-          element={protect(
-            <Dashboard
-              user={user}
-              gigs={gigs}
-              proposals={proposals}
-              projects={projects}
-              reviews={reviews}
-              onDeleteGig={deleteGig}
-              onAcceptProposal={acceptProposal}
-              onRejectProposal={rejectProposal}
-              onViewGig={handleViewGig}
-              setPage={setPage}
-              onOpenProjects={() =>
-                navigate("/projects")
-              }
-              onOpenPayments={() =>
-                navigate("/payments")
-              }
-            />
-          )}
+      {/* POST GIG */}
+
+      {page === "post" && (
+        user ? (
+          <PostGig
+            onAddGig={addGig}
+          />
+        ) : (
+          <Login
+            setPage={setPage}
+            setUser={setUser}
+          />
+        )
+      )}
+
+      {/* GIG DETAILS */}
+
+      {page === "details" &&
+        selectedGig && (
+          <GigDetails
+            gig={selectedGig}
+            user={user}
+            onBack={() =>
+              setPage("browse")
+            }
+            onAddProposal={addProposal}
+            onAcceptProposal={
+              acceptProposal
+            }
+          />
+        )}
+
+      {/* ABOUT */}
+
+      {page === "about" && (
+        <About setPage={setPage} />
+      )}
+
+      {/* CONTACT */}
+
+      {page === "contact" && (
+        <Contact />
+      )}
+
+      {/* LOGIN */}
+
+      {page === "login" && !user && (
+        <Login
+          setPage={setPage}
+          setUser={setUser}
         />
+      )}
 
-        <Route
-          path="/profile"
-          element={protect(
-            <Profile
-              user={user}
-              reviews={reviews}
-              setPage={setPage}
-            />
-          )}
+      {/* SIGNUP */}
+
+      {page === "signup" && !user && (
+        <Signup
+          setPage={setPage}
         />
+      )}
 
-        <Route
-          path="/projects"
-          element={protect(
-            <Projects
-              user={user}
-              projects={projects}
-              gigs={gigs}
-              proposals={proposals}
-              onUpdateStatus={updateProjectStatus}
-              onOpenChat={openProjectChat}
-            />
-          )}
-        />
+      {/* DASHBOARD */}
 
-        <Route
-          path="/reviews"
-          element={protect(
-            <Reviews
-              user={user}
-              projects={projects}
-              reviews={reviews}
-              onAddReview={addReview}
-            />
-          )}
-        />
+      {page === "dashboard" &&
+        user && (
+          <Dashboard
+            user={user}
+            gigs={gigs}
+            proposals={proposals}
+            onDeleteGig={deleteGig}
+            onAcceptProposal={
+              acceptProposal
+            }
+          />
+        )}
 
-        <Route
-          path="/invitations"
-          element={protect(
-            <Invitations setPage={setPage} />
-          )}
-        />
-
-        {/* NOTIFICATIONS CENTER */}
-
-        <Route
-          path="/notifications"
-          element={protect(
-            <Notifications setPage={setPage} />
-          )}
-        />
-
-        {/* PAYMENTS AND EARNINGS */}
-
-        <Route
-          path="/payments"
-          element={protect(
-            <PaymentCenter
-              user={user}
-              projects={projects}
-            />
-          )}
-        />
-
-        <Route
-          path="/earnings"
-          element={protect(
-            <FreelancerEarnings />
-          )}
-        />
-
-        {/* PROJECT CHAT */}
-
-        <Route
-          path="/project-chat/:projectId"
-          element={protect(
-            <ProjectChatRoute
-              user={user}
-              gigs={gigs}
-              proposals={proposals}
-              projects={projects}
-            />
-          )}
-        />
-
-        <Route
-          path="/project-chat"
-          element={
-            <Navigate to="/projects" replace />
-          }
-        />
-
-        {/* FALLBACK */}
-
-        <Route
-          path="*"
-          element={<Navigate to="/" replace />}
-        />
-      </Routes>
-    </>
+    </div>
   );
 }
 
-function ProjectChatRoute({
-  user,
-  gigs,
-  proposals,
-  projects,
-}) {
-  const { projectId } = useParams();
-  const navigate = useNavigate();
-
-  const project = projects.find((item) =>
-    sameId(item.id, projectId)
-  );
-
-  if (!project) {
-    return (
-      <main style={{ padding: "50px 6%" }}>
-        <h2>Project not found</h2>
-
-        <button
-          type="button"
-          onClick={() => navigate("/projects")}
-        >
-          Back to Projects
-        </button>
-      </main>
-    );
-  }
-
-  const gig =
-    gigs.find((item) =>
-      sameId(
-        item.id,
-        project.gigId ?? project.gig?.id
-      )
-    ) ||
-    project.gig || {
-      id: project.gigId || project.id,
-      title:
-        project.title ||
-        project.projectTitle ||
-        "Direct Hire Project",
-      clientEmail:
-        project.clientEmail ||
-        project.client?.email ||
-        "",
-    };
-
-  const proposal =
-    proposals.find(
-      (item) =>
-        sameId(
-          item.id,
-          project.proposalId ??
-            project.proposal?.id
-        ) ||
-        (sameId(item.gigId, gig.id) &&
-          String(item.status || "").toLowerCase() ===
-            "accepted")
-    ) ||
-    project.proposal || {
-      id: project.proposalId || project.id,
-      gigId: gig.id,
-      freelancerEmail:
-        project.freelancerEmail ||
-        project.freelancer?.email ||
-        "",
-      status: "accepted",
-    };
-
-  return (
-    <Chat
-      projectId={project.id}
-      user={user}
-      gig={gig}
-      proposal={proposal}
-      onBack={() => navigate("/projects")}
-    />
-  );
-}
+export default App;
