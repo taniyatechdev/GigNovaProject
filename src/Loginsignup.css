@@ -1,145 +1,357 @@
-.auth-container {
-  min-height: calc(100vh - 72px);
+/* ==========================================================================
+   GigNova Exact Theme Override (Warm Cream #FFF9ED + Sage #CFE8D5 + Forest #355E3B)
+   ========================================================================== */
 
-  display: flex;
-
-  justify-content: center;
-
-  align-items: center;
-
-  padding: 60px 20px;
-
-  background:
-    linear-gradient(
-      135deg,
-      #fff9ed,
-      #f4f7eb,
-      #cfe8d5
-    );
+/* 1. Main Background: Warm Cream */
+html, body, #root, .auth-page-container {
+  background-color: #FFF9ED !important;
+  background-image: none !important;
+  color: #2D332D !important;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
 }
 
-.auth-box {
-  width: 100%;
-
-  max-width: 430px;
-
-  padding: 40px;
-
-  background: white;
-
-  border-radius: 20px;
-
-  box-shadow:
-    0 15px 40px rgba(53, 94, 59, 0.14);
-
-  text-align: center;
+.auth-page-container {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  min-height: calc(100vh - 80px) !important;
+  padding: 2rem 1.5rem !important;
+  box-sizing: border-box !important;
 }
 
-.auth-box h2 {
-  color: #355e3b;
-
-  font-size: 30px;
-
-  margin-bottom: 8px;
+/* 2. Main Two-Column Card Shell */
+.auth-split-wrapper {
+  display: flex !important;
+  flex-direction: row !important;
+  width: 100% !important;
+  max-width: 980px !important;
+  min-height: 560px !important;
+  background-color: #FFFFFF !important;
+  border: 1px solid #EDE5D5 !important;
+  border-radius: 16px !important;
+  box-shadow: 0 8px 30px rgba(53, 94, 59, 0.08) !important;
+  overflow: hidden !important;
 }
 
-.auth-box > p {
-  color: #66736a;
-
-  margin-bottom: 25px;
+/* 3. Left Panel: Soft Sage Green (Kills the Blue Gradient completely) */
+.auth-showcase-panel {
+  flex: 1 !important;
+  background-color: #CFE8D5 !important;
+  background-image: none !important;
+  border-right: 1px solid #EDE5D5 !important;
+  padding: 3.5rem 2.5rem !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: space-between !important;
+  box-sizing: border-box !important;
+  text-align: left !important;
 }
 
-
-/* AUTH FORM */
-
-.auth-box form {
-  display: flex;
-
-  flex-direction: column;
-
-  gap: 15px;
+.auth-showcase-overlay {
+  display: none !important; /* Removes blue gradient mesh */
 }
 
-.auth-box input {
-  width: 100%;
-
-  padding: 14px 15px;
-
-  border: 1px solid #cfe8d5;
-
-  border-radius: 9px;
-
-  background: #fffdf7;
-
-  outline: none;
-
-  font-size: 15px;
+/* 4. Left Panel Content */
+.auth-tag {
+  display: inline-block !important;
+  padding: 0.35rem 0.85rem !important;
+  background-color: #E8F3E9 !important;
+  border: 1px solid #78977D !important;
+  border-radius: 30px !important;
+  font-size: 0.75rem !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  color: #355E3B !important;
+  margin-bottom: 1.25rem !important;
 }
 
-.auth-box input:focus {
-  border-color: #7da886;
-
-  box-shadow:
-    0 0 0 3px rgba(125, 168, 134, 0.12);
+.auth-showcase-content h2 {
+  font-size: 2rem !important;
+  font-weight: 800 !important;
+  line-height: 1.25 !important;
+  color: #355E3B !important;
+  margin: 0 0 1rem 0 !important;
+  text-align: left !important;
 }
 
-.auth-box button {
-  width: 100%;
-
-  padding: 14px;
-
-  border: none;
-
-  border-radius: 9px;
-
-  background: #355e3b;
-
-  color: white;
-
-  font-size: 16px;
-
-  font-weight: 600;
+.auth-showcase-content p {
+  color: #2D332D !important;
+  font-size: 0.95rem !important;
+  line-height: 1.6 !important;
+  margin: 0 0 2rem 0 !important;
+  text-align: left !important;
 }
 
-.auth-box button:hover {
-  background: #294b2f;
+/* Step pills on the left side */
+.auth-showcase-stepper {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 0.75rem !important;
 }
 
+.auth-step-pill {
+  display: flex !important;
+  align-items: center !important;
+  gap: 0.75rem !important;
+  padding: 0.65rem 1rem !important;
+  border-radius: 10px !important;
+  background-color: #FFFFFF !important;
+  border: 1px solid #EDE5D5 !important;
+  font-size: 0.85rem !important;
+  color: #2D332D !important;
+  font-weight: 500 !important;
+}
 
-/* ERROR */
+.auth-step-pill.active {
+  background-color: #355E3B !important;
+  border-color: #355E3B !important;
+  color: #FFFFFF !important;
+  font-weight: 600 !important;
+}
 
-.error {
-  padding: 10px;
+.auth-step-pill span {
+  width: 22px !important;
+  height: 22px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  border-radius: 50% !important;
+  background-color: #E8F3E9 !important;
+  color: #355E3B !important;
+  font-size: 0.75rem !important;
+  font-weight: 700 !important;
+}
 
+.auth-step-pill.active span {
+  background-color: rgba(255, 255, 255, 0.25) !important;
+  color: #FFFFFF !important;
+}
+
+.auth-badge-item strong {
+  display: block !important;
+  font-size: 1.25rem !important;
+  font-weight: 700 !important;
+  color: #355E3B !important;
+}
+
+.auth-badge-item span {
+  font-size: 0.8rem !important;
+  color: #78977D !important;
+}
+
+/* 5. Right Form Panel: Pure White */
+.auth-form-panel {
+  flex: 1.15 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 3rem 2.5rem !important;
+  background-color: #FFFFFF !important;
+  box-sizing: border-box !important;
+  text-align: left !important;
+}
+
+.auth-card {
+  width: 100% !important;
+  max-width: 400px !important;
+  text-align: left !important;
+}
+
+.auth-header {
+  margin-bottom: 1.75rem !important;
+  text-align: left !important;
+}
+
+.auth-header h1 {
+  font-size: 1.85rem !important;
+  font-weight: 800 !important;
+  color: #355E3B !important;
+  margin: 0 0 0.35rem 0 !important;
+  text-align: left !important;
+}
+
+.auth-header p {
+  color: #78977D !important;
+  font-size: 0.9rem !important;
   margin: 0 !important;
-
-  background: #fff0ef;
-
-  color: #d9534f !important;
-
-  border-radius: 8px;
-
-  font-size: 14px !important;
+  text-align: left !important;
 }
 
-
-/* LOGIN / SIGNUP LINK */
-
-.auth-switch {
-  margin-top: 22px !important;
-
-  color: #66736a;
+/* 6. Form Inputs & Groups: Light Mint Backgrounds (#E8F3E9) */
+.auth-form {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 1.15rem !important;
+  text-align: left !important;
 }
 
-.auth-switch span {
-  color: #355e3b;
-
-  font-weight: 700;
-
-  cursor: pointer;
+.auth-field-group {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 0.35rem !important;
+  text-align: left !important;
 }
 
-.auth-switch span:hover {
-  text-decoration: underline;
+.auth-field-group label {
+  font-size: 0.85rem !important;
+  font-weight: 600 !important;
+  color: #2D332D !important;
+  text-align: left !important;
 }
 
+.auth-input-wrapper {
+  position: relative !important;
+  display: flex !important;
+  align-items: center !important;
+  width: 100% !important;
+}
+
+.auth-input-action-wrapper {
+  display: flex !important;
+  gap: 0.5rem !important;
+  align-items: stretch !important;
+}
+
+.auth-input-icon {
+  position: absolute !important;
+  left: 0.9rem !important;
+  color: #78977D !important;
+  display: flex !important;
+  align-items: center !important;
+  pointer-events: none !important;
+}
+
+.auth-input {
+  width: 100% !important;
+  padding: 0.75rem 0.9rem 0.75rem 2.6rem !important;
+  font-size: 0.9rem !important;
+  border: 1.5px solid #EDE5D5 !important;
+  border-radius: 12px !important;
+  background-color: #E8F3E9 !important;
+  color: #2D332D !important;
+  box-sizing: border-box !important;
+  transition: all 0.2s ease !important;
+}
+
+.auth-input:focus {
+  outline: none !important;
+  background-color: #FFFFFF !important;
+  border-color: #355E3B !important;
+  box-shadow: 0 0 0 3px rgba(53, 94, 59, 0.15) !important;
+}
+
+/* 7. Buttons: Forest Green (#355E3B) & Dark Forest Green Hover (#294A2E) */
+.auth-btn-primary {
+  background-color: #355E3B !important;
+  color: #FFFFFF !important;
+  border: none !important;
+  border-radius: 12px !important;
+  padding: 0.75rem 1.25rem !important;
+  font-weight: 600 !important;
+  cursor: pointer !important;
+  transition: background-color 0.2s ease !important;
+}
+
+.auth-btn-primary:hover:not(:disabled) {
+  background-color: #294A2E !important;
+  box-shadow: 0 4px 12px rgba(41, 74, 46, 0.25) !important;
+}
+
+/* Secondary Button: Soft Sage (#CFE8D5) */
+.auth-btn-secondary {
+  background-color: #CFE8D5 !important;
+  color: #355E3B !important;
+  border: 1px solid #EDE5D5 !important;
+  border-radius: 12px !important;
+  padding: 0.75rem 1.25rem !important;
+  font-weight: 600 !important;
+  cursor: pointer !important;
+}
+
+.auth-btn-secondary:hover:not(:disabled) {
+  background-color: #bedcc6 !important;
+}
+
+.auth-btn-success {
+  background-color: #E8F3E9 !important;
+  color: #355E3B !important;
+  border: 1px solid #355E3B !important;
+  border-radius: 12px !important;
+}
+
+.auth-btn:disabled {
+  opacity: 0.6 !important;
+  cursor: not-allowed !important;
+}
+
+/* 8. Links and Text Prompts */
+.auth-link-btn, .auth-subtle-link {
+  background: none !important;
+  border: none !important;
+  color: #355E3B !important;
+  font-weight: 700 !important;
+  cursor: pointer !important;
+  padding: 0 !important;
+}
+
+.auth-link-btn:hover, .auth-subtle-link:hover {
+  text-decoration: underline !important;
+}
+
+.auth-footer-prompt {
+  margin-top: 1.5rem !important;
+  text-align: center !important;
+  font-size: 0.85rem !important;
+  color: #78977D !important;
+}
+
+/* 9. OTP Modal Theming */
+.auth-modal-card {
+  background-color: #FFFFFF !important;
+  border: 1px solid #EDE5D5 !important;
+  border-radius: 16px !important;
+  box-shadow: 0 15px 35px rgba(53, 94, 59, 0.15) !important;
+}
+
+.auth-icon-badge {
+  background-color: #E8F3E9 !important;
+  color: #355E3B !important;
+}
+
+.auth-otp-box {
+  background-color: #E8F3E9 !important;
+  border: 1.5px solid #EDE5D5 !important;
+  color: #2D332D !important;
+  border-radius: 8px !important;
+}
+
+.auth-otp-box:focus {
+  background-color: #FFFFFF !important;
+  border-color: #355E3B !important;
+  box-shadow: 0 0 0 3px rgba(53, 94, 59, 0.15) !important;
+}
+
+.auth-otp-preview-banner {
+  background-color: #E8F3E9 !important;
+  border: 1px dashed #78977D !important;
+  border-radius: 8px !important;
+  color: #2D332D !important;
+}
+
+.auth-otp-preview-code {
+  color: #355E3B !important;
+  font-weight: 800 !important;
+}
+
+/* 10. Toast Notification */
+.auth-toast {
+  background-color: #FFFFFF !important;
+  border-left: 5px solid #355E3B !important;
+  color: #2D332D !important;
+}
+.auth-toast-success {
+  border-left-color: #355E3B !important;
+}
+.auth-toast-error {
+  border-left-color: #dc2626 !important;
+}
