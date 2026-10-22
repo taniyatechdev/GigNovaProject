@@ -1,0 +1,200 @@
+.browse-page {
+  min-height: 85vh;
+
+  padding: 70px 7%;
+
+  background: #fff9ed;
+}
+
+.browse-header {
+  text-align: center;
+
+  margin-bottom: 30px;
+}
+
+.browse-header h1 {
+  color: #355e3b;
+
+  font-size: 42px;
+
+  margin-bottom: 10px;
+}
+
+.browse-header p {
+  color: #66736a;
+}
+
+
+/* SEARCH */
+
+.search-box {
+  max-width: 600px;
+
+  margin: 0 auto 40px;
+}
+
+.search-box input {
+  width: 100%;
+
+  padding: 15px 18px;
+
+  border: 1px solid #cfe8d5;
+
+  border-radius: 11px;
+
+  background: white;
+
+  outline: none;
+
+  font-size: 15px;
+}
+
+.search-box input:focus {
+  border-color: #7da886;
+}
+
+
+/* GIG GRID */
+
+.gig-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(3, 1fr);
+
+  gap: 25px;
+}
+
+
+/* GIG CARD */
+
+.gig-card {
+  background: white;
+
+  padding: 25px;
+
+  border-radius: 17px;
+
+  border: 1px solid #e0eadf;
+
+  box-shadow:
+    0 5px 18px rgba(53, 94, 59, 0.06);
+}
+
+.gig-card h3 {
+  color: #355e3b;
+
+  margin-bottom: 12px;
+}
+
+.gig-card p {
+  color: #66736a;
+
+  font-size: 14px;
+
+  margin-bottom: 8px;
+}
+
+.gig-card button {
+  width: 100%;
+
+  margin-top: 15px;
+
+  padding: 12px;
+
+  border: none;
+
+  border-radius: 9px;
+
+  background: #355e3b;
+
+  color: white;
+
+  font-weight: 600;
+}
+
+
+/* ================================
+   POST GIG
+================================ */
+
+.post-gig {
+  min-height: 85vh;
+
+  padding: 70px 20px;
+
+  background: #fff9ed;
+}
+
+.post-gig-box {
+  max-width: 650px;
+
+  margin: auto;
+
+  padding: 40px;
+
+  background: white;
+
+  border-radius: 20px;
+
+  box-shadow:
+    0 10px 30px rgba(53, 94, 59, 0.1);
+}
+
+.post-gig-box h1 {
+  color: #355e3b;
+
+  text-align: center;
+
+  margin-bottom: 30px;
+}
+
+.post-gig form {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 15px;
+}
+
+.post-gig input,
+.post-gig textarea,
+.post-gig select {
+  width: 100%;
+
+  padding: 14px;
+
+  border: 1px solid #cfe8d5;
+
+  border-radius: 9px;
+
+  outline: none;
+
+  background: #fffdf7;
+}
+
+.post-gig textarea {
+  min-height: 130px;
+
+  resize: vertical;
+}
+
+.post-gig button {
+  padding: 14px;
+
+  border: none;
+
+  border-radius: 10px;
+
+  background: #355e3b;
+
+  color: white;
+
+  font-weight: 600;
+
+  font-size: 15px;
+}
+
+
+
+

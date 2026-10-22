@@ -1,0 +1,308 @@
+/* =========================
+   ABOUT PAGE
+========================= */
+
+.about-page {
+  min-height: 100vh;
+  background: #fff8e7;
+  color: #26332a;
+  padding-bottom: 70px;
+}
+
+/* Hero */
+.about-hero {
+  text-align: center;
+  padding: 75px 20px 55px;
+  background: #cfe8d5;
+}
+
+.about-label {
+  display: inline-block;
+  background: #355e3b;
+  color: white;
+  padding: 8px 18px;
+  border-radius: 30px;
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 18px;
+}
+
+.about-hero h1 {
+  font-size: 48px;
+  margin: 0 0 15px;
+  color: #355e3b;
+}
+
+.about-hero p {
+  max-width: 700px;
+  margin: auto;
+  font-size: 17px;
+  line-height: 1.7;
+  color: #526157;
+}
+
+
+/* =========================
+   INTRO
+========================= */
+
+.about-intro {
+  max-width: 900px;
+  margin: 55px auto;
+  padding: 0 25px;
+  text-align: center;
+}
+
+.about-intro h2 {
+  font-size: 32px;
+  color: #355e3b;
+  margin-bottom: 15px;
+}
+
+.about-intro p {
+  font-size: 16px;
+  line-height: 1.8;
+  color: #5d675f;
+}
+
+
+/* =========================
+   PROJECT TRACK
+========================= */
+
+.project-track {
+  max-width: 1000px;
+  margin: 60px auto;
+  padding: 0 25px;
+}
+
+.track-heading {
+  text-align: center;
+  margin-bottom: 45px;
+}
+
+.track-heading h2 {
+  font-size: 34px;
+  color: #355e3b;
+  margin-bottom: 10px;
+}
+
+.track-heading p {
+  color: #69736c;
+}
+
+
+/* Timeline */
+.timeline {
+  position: relative;
+  max-width: 850px;
+  margin: auto;
+}
+
+.timeline::before {
+  content: "";
+  position: absolute;
+  left: 22px;
+  top: 0;
+  width: 3px;
+  height: 100%;
+  background: #a9cdb1;
+}
+
+.track-item {
+  position: relative;
+  display: flex;
+  gap: 25px;
+  margin-bottom: 35px;
+}
+
+.track-number {
+  min-width: 46px;
+  height: 46px;
+  background: #355e3b;
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  z-index: 2;
+}
+
+.track-card {
+  flex: 1;
+  background: #f4eedc;
+  border: 1px solid #d9dfd2;
+  border-radius: 18px;
+  padding: 24px 27px;
+  box-shadow: 0 5px 18px rgba(53, 94, 59, 0.08);
+  transition: 0.3s ease;
+}
+
+.track-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 25px rgba(53, 94, 59, 0.14);
+}
+
+.track-card h3 {
+  margin: 0 0 12px;
+  color: #355e3b;
+  font-size: 21px;
+}
+
+.track-card ul {
+  margin: 0;
+  padding-left: 20px;
+}
+
+.track-card li {
+  margin: 8px 0;
+  color: #59645b;
+  line-height: 1.5;
+}
+
+
+/* =========================
+   CURRENT STATUS
+========================= */
+
+.current-status {
+  max-width: 1000px;
+  margin: 70px auto;
+  padding: 0 25px;
+}
+
+.status-box {
+  background: #355e3b;
+  color: white;
+  border-radius: 25px;
+  padding: 40px;
+  text-align: center;
+}
+
+.status-box h2 {
+  margin-top: 0;
+  font-size: 30px;
+}
+
+.status-box p {
+  max-width: 700px;
+  margin: auto;
+  line-height: 1.7;
+  opacity: 0.9;
+}
+
+.status-badge {
+  display: inline-block;
+  margin-top: 20px;
+  background: #cfe8d5;
+  color: #355e3b;
+  padding: 10px 20px;
+  border-radius: 25px;
+  font-weight: bold;
+}
+
+
+/* =========================
+   FUTURE PLANS
+========================= */
+
+.future-section {
+  max-width: 1000px;
+  margin: 70px auto;
+  padding: 0 25px;
+}
+
+.future-section h2 {
+  text-align: center;
+  color: #355e3b;
+  font-size: 32px;
+  margin-bottom: 35px;
+}
+
+.future-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.future-card {
+  background: white;
+  border: 1px solid #d9dfd2;
+  border-radius: 18px;
+  padding: 25px;
+  text-align: center;
+  transition: 0.3s ease;
+}
+
+.future-card:hover {
+  transform: translateY(-5px);
+  background: #f4eedc;
+}
+
+.future-icon {
+  font-size: 32px;
+  margin-bottom: 12px;
+}
+
+.future-card h3 {
+  color: #355e3b;
+  margin-bottom: 10px;
+}
+
+.future-card p {
+  color: #687269;
+  line-height: 1.5;
+}
+
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 768px) {
+
+  .about-hero {
+    padding: 55px 20px 40px;
+  }
+
+  .about-hero h1 {
+    font-size: 36px;
+  }
+
+  .about-hero p {
+    font-size: 15px;
+  }
+
+  .about-intro h2,
+  .track-heading h2,
+  .future-section h2 {
+    font-size: 27px;
+  }
+
+  .timeline::before {
+    left: 19px;
+  }
+
+  .track-item {
+    gap: 18px;
+  }
+
+  .track-number {
+    min-width: 40px;
+    height: 40px;
+    font-size: 14px;
+  }
+
+  .track-card {
+    padding: 20px;
+  }
+
+  .future-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .status-box {
+    padding: 30px 20px;
+  }
+}
