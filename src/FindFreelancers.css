@@ -1,0 +1,519 @@
+
+/* ====================================
+   GIGNOVA - FIND FREELANCERS
+   WHITE + CREAM + LIGHT PISTA GREEN
+==================================== */
+
+.find-freelancers-page {
+  min-height: 100vh;
+  background: #fffaf1;
+  padding: 45px 20px 80px;
+  color: #36563d;
+}
+
+.find-freelancers-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.ff-page-header {
+  text-align: center;
+  padding: 40px 15px 45px;
+}
+
+.ff-eyebrow {
+  display: inline-block;
+  color: #62846a;
+  background: #e5eedb;
+  padding: 9px 16px;
+  border-radius: 30px;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+}
+
+.ff-page-header h1 {
+  font-size: clamp(29px, 4vw, 45px);
+  margin: 20px 0 12px;
+  color: #36563d;
+}
+
+.ff-page-header p {
+  max-width: 650px;
+  margin: 0 auto;
+  line-height: 1.8;
+  color: #718073;
+}
+
+/* FILTERS */
+
+.ff-filters {
+  display: grid;
+  grid-template-columns: 2fr repeat(3, 1fr) auto;
+  align-items: end;
+  gap: 14px;
+  padding: 25px;
+  background: white;
+  border: 1px solid #e1eadb;
+  border-radius: 20px;
+  box-shadow: 0 8px 30px rgba(43, 76, 50, 0.06);
+}
+
+.ff-field {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  min-width: 0;
+}
+
+.ff-field label {
+  color: #46664c;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.ff-field input,
+.ff-field select {
+  width: 100%;
+  min-width: 0;
+  height: 45px;
+  padding: 0 12px;
+  border: 1px solid #d6e4cf;
+  border-radius: 10px;
+  background: #fbfdf9;
+  color: #36563d;
+  font: inherit;
+  outline: none;
+}
+
+.ff-field input:focus,
+.ff-field select:focus {
+  border-color: #8fb28c;
+  box-shadow: 0 0 0 3px rgba(143, 178, 140, 0.15);
+}
+
+.ff-clear-btn,
+.ff-empty button {
+  height: 45px;
+  padding: 0 18px;
+  background: #e5eedb;
+  border: none;
+  border-radius: 10px;
+  color: #36563d;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+/* RESULTS */
+
+.ff-results-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+  margin: 38px 0 22px;
+}
+
+.ff-results-heading h2 {
+  font-size: 25px;
+  margin: 0;
+}
+
+.ff-results-heading span {
+  background: #e5eedb;
+  padding: 9px 15px;
+  border-radius: 25px;
+  font-weight: 700;
+  font-size: 13px;
+}
+
+/* FREELANCER CARDS */
+
+.ff-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 22px;
+}
+
+.ff-card {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  padding: 25px;
+  background: white;
+  border: 1px solid #e0ead9;
+  border-radius: 20px;
+  box-shadow: 0 6px 24px rgba(43, 76, 50, 0.05);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.ff-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(43, 76, 50, 0.1);
+}
+
+.ff-card-top {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.ff-avatar {
+  width: 60px;
+  height: 60px;
+  flex-shrink: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  background: #d9e9cb;
+  color: #36563d;
+  font-size: 25px;
+  font-weight: 800;
+}
+
+.ff-card-top h3 {
+  margin: 0 0 6px;
+  color: #36563d;
+  font-size: 19px;
+}
+
+.ff-card-top p {
+  margin: 0;
+  color: #829082;
+  font-size: 13px;
+}
+
+.ff-rating-box {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 13px 15px;
+  background: #f3f8ee;
+  border-radius: 11px;
+}
+
+.ff-rating-box strong {
+  color: #46664c;
+}
+
+.ff-rating-box span {
+  color: #788678;
+  font-size: 13px;
+}
+
+.ff-bio {
+  margin: 0;
+  color: #677668;
+  font-size: 14px;
+  line-height: 1.7;
+  overflow-wrap: anywhere;
+}
+
+.ff-skills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.ff-skills span {
+  padding: 7px 12px;
+  border-radius: 20px;
+  background: #e5eedb;
+  color: #54765b;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.ff-card-meta {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  border-top: 1px solid #e6ede1;
+  padding-top: 16px;
+  margin-top: auto;
+}
+
+.ff-card-meta div {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.ff-card-meta small {
+  color: #8b988a;
+}
+
+.ff-card-meta strong {
+  color: #46664c;
+  font-size: 13px;
+}
+
+.ff-view-btn {
+  width: 100%;
+  padding: 14px 15px;
+  background: #dcebcf;
+  color: #36563d;
+  border: none;
+  border-radius: 11px;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.ff-view-btn:hover,
+.ff-clear-btn:hover {
+  background: #c6dfb7;
+}
+
+/* EMPTY STATE */
+
+.ff-empty {
+  text-align: center;
+  padding: 60px 20px;
+  border: 1px dashed #cadfc0;
+  border-radius: 20px;
+  background: white;
+}
+
+.ff-empty > div {
+  font-size: 45px;
+}
+
+.ff-empty h3 {
+  color: #36563d;
+}
+
+.ff-empty p {
+  color: #788678;
+  line-height: 1.7;
+}
+
+/* FULL PROFILE */
+
+.ff-back-btn {
+  padding: 12px 20px;
+  margin-bottom: 25px;
+  border: none;
+  border-radius: 10px;
+  background: #e5eedb;
+  color: #36563d;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.ff-profile-hero {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+  padding: 32px;
+  background: white;
+  border: 1px solid #e0ead9;
+  border-radius: 20px;
+}
+
+.ff-avatar-large {
+  width: 95px;
+  height: 95px;
+  font-size: 40px;
+}
+
+.ff-profile-hero h1 {
+  margin: 0 0 8px;
+  color: #36563d;
+}
+
+.ff-profile-hero p {
+  margin: 0 0 12px;
+  color: #788678;
+}
+
+.ff-profile-rating {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  font-weight: 700;
+  color: #54765b;
+}
+
+.ff-profile-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+  margin: 22px 0;
+}
+
+.ff-profile-stats div {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 25px;
+  background: #f0f7e9;
+  border-radius: 15px;
+  text-align: center;
+}
+
+.ff-profile-stats strong {
+  font-size: 26px;
+  color: #36563d;
+}
+
+.ff-profile-stats span {
+  color: #788678;
+  font-size: 13px;
+}
+
+.ff-profile-section {
+  margin-bottom: 18px;
+  padding: 28px;
+  background: white;
+  border: 1px solid #e0ead9;
+  border-radius: 17px;
+}
+
+.ff-profile-section h2 {
+  color: #36563d;
+  margin: 0 0 18px;
+}
+
+.ff-profile-section p {
+  color: #677668;
+  line-height: 1.8;
+  overflow-wrap: anywhere;
+  white-space: pre-wrap;
+}
+
+.ff-reviews {
+  display: grid;
+  gap: 14px;
+}
+
+.ff-review {
+  padding: 18px;
+  background: #f7faf3;
+  border: 1px solid #e0ead9;
+  border-radius: 12px;
+}
+
+.ff-review-heading {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.ff-review-heading span {
+  color: #d19a34;
+}
+
+.ff-review small {
+  display: block;
+  margin-top: 7px;
+  color: #829082;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 1050px) {
+  .ff-filters {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .ff-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 650px) {
+  .find-freelancers-page {
+    padding: 25px 12px 50px;
+  }
+
+  .ff-filters,
+  .ff-grid,
+  .ff-profile-stats {
+    grid-template-columns: 1fr;
+  }
+
+  .ff-profile-hero {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 22px;
+  }
+
+  .ff-card,
+  .ff-profile-section {
+    padding: 20px;
+  }
+
+  .ff-results-heading h2 {
+    font-size: 21px;
+  }
+}
+
+
+
+/* DIRECT HIRE FORM */
+
+.ff-hire-section {
+  margin: 20px 0;
+}
+
+.ff-hire-btn {
+  background: #dcebcf;
+  color: #36563d;
+  border: none;
+  padding: 14px 24px;
+  border-radius: 11px;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.ff-hire-btn:hover {
+  background: #c6dfb7;
+}
+
+.ff-hire-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 20px;
+  padding: 28px;
+  background: white;
+  border: 1px solid #dce9d2;
+  border-radius: 18px;
+}
+
+.ff-hire-form h2 {
+  margin: 0 0 10px;
+  color: #36563d;
+}
+
+.ff-hire-form label {
+  font-weight: 700;
+  color: #46664c;
+}
+
+.ff-hire-form input,
+.ff-hire-form textarea {
+  padding: 13px;
+  border: 1px solid #d6e4cf;
+  border-radius: 10px;
+  background: #fbfdf9;
+  font: inherit;
+  color: #36563d;
+}
+
+.ff-hire-form input:focus,
+.ff-hire-form textarea:focus {
+  outline: 2px solid #a9c69b;
+}
+
+.ff-hire-error {
+  color: #a64c48;
+}
+
+.ff-hire-success {
+  color: #3d7947;
+  font-weight: 700;
+}
