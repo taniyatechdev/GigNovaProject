@@ -1,0 +1,203 @@
+
+.invitations-page {
+  min-height: 100vh;
+  padding: 45px 20px 80px;
+  background: #fffaf1;
+  color: #36563d;
+}
+
+.invitations-container {
+  max-width: 1150px;
+  margin: auto;
+}
+
+.inv-header {
+  text-align: center;
+  margin-bottom: 35px;
+}
+
+.inv-header span {
+  color: #62846a;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+}
+
+.inv-header h1 {
+  margin: 15px 0;
+  font-size: clamp(30px, 4vw, 44px);
+}
+
+.inv-header p {
+  color: #718073;
+}
+
+.inv-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 25px;
+}
+
+.inv-tabs button {
+  padding: 12px 23px;
+  border: 1px solid #d9e7d0;
+  background: white;
+  color: #54765b;
+  border-radius: 12px;
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.inv-tabs button.active {
+  background: #dcebcf;
+  border-color: #a9c69b;
+}
+
+.inv-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 22px;
+}
+
+.inv-card {
+  background: white;
+  border: 1px solid #e0ead9;
+  border-radius: 18px;
+  padding: 25px;
+  box-shadow: 0 8px 25px rgba(43, 76, 50, 0.05);
+}
+
+.inv-card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.inv-category {
+  color: #54765b;
+  background: #f0f7e9;
+  padding: 8px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.inv-status {
+  text-transform: capitalize;
+  padding: 7px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.inv-status.pending {
+  background: #fff1d8;
+  color: #91601c;
+}
+
+.inv-status.accepted {
+  background: #e5f3e1;
+  color: #3d7947;
+}
+
+.inv-status.rejected {
+  background: #ffebeb;
+  color: #aa4e4e;
+}
+
+.inv-card h3 {
+  color: #36563d;
+  margin: 20px 0 10px;
+}
+
+.inv-description {
+  color: #6f7e70;
+  line-height: 1.7;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.inv-details {
+  background: #f7faf3;
+  padding: 15px;
+  border-radius: 12px;
+  margin: 18px 0;
+}
+
+.inv-details p {
+  color: #667667;
+  font-size: 14px;
+  margin: 10px 0;
+}
+
+.inv-details strong {
+  color: #36563d;
+}
+
+.inv-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.inv-primary-btn,
+.inv-reject-btn {
+  border: none;
+  border-radius: 10px;
+  padding: 12px 18px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.inv-primary-btn {
+  background: #dcebcf;
+  color: #36563d;
+}
+
+.inv-primary-btn:hover {
+  background: #c6dfb7;
+}
+
+.inv-reject-btn {
+  background: #fff0ee;
+  color: #a64c48;
+}
+
+.inv-accepted {
+  color: #3d7947;
+  font-weight: 600;
+}
+
+.inv-rejected,
+.inv-error {
+  color: #a64c48;
+}
+
+.inv-empty {
+  text-align: center;
+  padding: 65px 20px;
+  background: white;
+  border: 1px dashed #cadfc0;
+  border-radius: 18px;
+}
+
+.inv-empty div {
+  font-size: 45px;
+}
+
+.inv-empty p {
+  color: #718073;
+}
+
+@media (max-width: 700px) {
+  .inv-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .invitations-page {
+    padding: 25px 12px 50px;
+  }
+}
