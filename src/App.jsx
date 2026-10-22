@@ -45,23 +45,18 @@ const PAGE_PATHS = {
   gigs: "/browse",
   saved: "/saved",
   "saved-gigs": "/saved",
-
   freelancers: "/freelancers",
   "find-freelancers": "/freelancers",
-
   invitations: "/invitations",
   notifications: "/notifications",
-
   payments: "/payments",
   earnings: "/earnings",
   "freelancer-earnings": "/earnings",
-
   post: "/post",
   about: "/about",
   contact: "/contact",
   login: "/login",
   signup: "/signup",
-
   dashboard: "/dashboard",
   profile: "/profile",
   projects: "/projects",
@@ -76,22 +71,17 @@ export default function App() {
     user,
     setUser,
     logoutUser,
-
     gigs = [],
     addGig,
     deleteGig,
-
     proposals = [],
     addProposal,
     acceptProposal,
     rejectProposal,
-
     projects = [],
     updateProjectStatus,
-
     reviews = [],
     addReview,
-
     storageError,
   } = useGigNova();
 
@@ -122,10 +112,9 @@ export default function App() {
   const handleViewGig = (gig) => {
     if (gig?.id == null) return;
 
-    navigate(
-      `/gigs/${encodeURIComponent(gig.id)}`,
-      { state: { gig } }
-    );
+    navigate(`/gigs/${encodeURIComponent(gig.id)}`, {
+      state: { gig },
+    });
   };
 
   const openProjectChat = (project) => {
@@ -182,8 +171,7 @@ export default function App() {
               gigs={gigs.filter(
                 (gig) =>
                   !gig.status ||
-                  String(gig.status).toLowerCase() ===
-                    "open"
+                  String(gig.status).toLowerCase() === "open"
               )}
               onView={handleViewGig}
               onViewGig={handleViewGig}
@@ -270,12 +258,8 @@ export default function App() {
               onRejectProposal={rejectProposal}
               onViewGig={handleViewGig}
               setPage={setPage}
-              onOpenProjects={() =>
-                navigate("/projects")
-              }
-              onOpenPayments={() =>
-                navigate("/payments")
-              }
+              onOpenProjects={() => navigate("/projects")}
+              onOpenPayments={() => navigate("/payments")}
             />
           )}
         />
@@ -324,8 +308,6 @@ export default function App() {
           )}
         />
 
-        {/* NOTIFICATIONS CENTER */}
-
         <Route
           path="/notifications"
           element={protect(
@@ -347,9 +329,7 @@ export default function App() {
 
         <Route
           path="/earnings"
-          element={protect(
-            <FreelancerEarnings />
-          )}
+          element={protect(<FreelancerEarnings />)}
         />
 
         {/* PROJECT CHAT */}
@@ -368,20 +348,19 @@ export default function App() {
 
         <Route
           path="/project-chat"
-          element={
-            <Navigate to="/projects" replace />
-          }
+          element={<Navigate to="/projects" replace />}
         />
 
-        {/* FALLBACK */}
+        {/* 404 PAGE - KEEP THIS LAST */}
 
         <Route
           path="*"
-          element={<Navigate to="/" replace />}
+          element={<NotFound />}
         />
-        <Route path="*" element={<NotFound />} />
+        
+{/* 404 PAGE - KEEP THIS LAST */}
+<Route path="*" element={<NotFound />} />
       </Routes>
-      
     </>
   );
 }
@@ -438,8 +417,7 @@ function ProjectChatRoute({
       (item) =>
         sameId(
           item.id,
-          project.proposalId ??
-            project.proposal?.id
+          project.proposalId ?? project.proposal?.id
         ) ||
         (sameId(item.gigId, gig.id) &&
           String(item.status || "").toLowerCase() ===
