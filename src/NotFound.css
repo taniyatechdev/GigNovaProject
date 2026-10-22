@@ -1,38 +1,368 @@
-.not-found {
-  min-height: 80vh;
+
+/* ========================================
+   GIGNOVAA — 404 PAGE
+   Pistachio Green + Cream Theme
+======================================== */
+
+.nf-page {
+  min-height: 100vh;
+  width: 100%;
+  padding: 45px 20px;
+  box-sizing: border-box;
+
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
+
+  background:
+    radial-gradient(
+      circle at 10% 15%,
+      #e7edda 0,
+      transparent 32%
+    ),
+    radial-gradient(
+      circle at 90% 85%,
+      #e4ebd5 0,
+      transparent 35%
+    ),
+    #fbf7e9;
+
+  color: #405641;
+  font-family: inherit;
+}
+
+.nf-card {
+  position: relative;
+  width: 100%;
+  max-width: 850px;
+  padding: 35px 45px 25px;
+  box-sizing: border-box;
+  overflow: hidden;
   text-align: center;
-  padding: 24px;
+
+  background: #fffef8;
+  border: 1px solid #e4e8d5;
+  border-radius: 28px;
+
+  box-shadow:
+    0 20px 60px rgba(64, 86, 65, 0.10),
+    0 3px 12px rgba(64, 86, 65, 0.04);
+
+  animation: nf-appear 0.6s ease both;
 }
 
-.not-found h1 {
-  font-size: 100px;
-  margin: 0;
-  color: #6c63ff;
+/* Brand */
+
+.nf-brand {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+
+  color: #405641;
+  font-size: 23px;
+  font-weight: 800;
 }
 
-.not-found h2 {
-  margin: 10px 0;
-  color: var(--text-color, #222);
+.nf-brand > span:last-child {
+  color: #86a66c;
 }
 
-.not-found p {
-  color: #777;
-  margin-bottom: 24px;
+.nf-brand-icon {
+  width: 38px;
+  height: 38px;
+  display: grid;
+  place-items: center;
+
+  background: #dce8c8;
+  color: #405641;
+  border-radius: 12px;
 }
 
-.home-btn {
-  background: #6c63ff;
-  color: white;
-  padding: 12px 24px;
-  border-radius: 8px;
+/* 404 Illustration */
+
+.nf-illustration {
+  position: relative;
+  height: 225px;
+  margin: 12px auto 5px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nf-planet {
+  position: relative;
+  z-index: 2;
+
+  width: 175px;
+  height: 175px;
+  display: grid;
+  place-items: center;
+
+  border-radius: 50%;
+  background: linear-gradient(
+    145deg,
+    #c5d8a6,
+    #a8bd83 65%,
+    #91ad70
+  );
+
+  color: #fffef8;
+  font-size: 62px;
+  font-weight: 800;
+  letter-spacing: -3px;
+
+  box-shadow:
+    inset -10px -12px 25px rgba(64, 86, 65, 0.12),
+    0 15px 32px rgba(105, 135, 78, 0.18);
+}
+
+.nf-planet::after {
+  content: "";
+  position: absolute;
+  inset: 13px;
+  border: 1px solid rgba(255, 254, 248, 0.45);
+  border-radius: 50%;
+}
+
+.nf-orbit {
+  position: absolute;
+  width: 245px;
+  height: 78px;
+
+  border: 2px solid #c6d5ad;
+  border-radius: 50%;
+  transform: rotate(-20deg);
+}
+
+.nf-star {
+  position: absolute;
+  color: #8da873;
+}
+
+.nf-star-one {
+  top: 25px;
+  left: 24%;
+  font-size: 29px;
+}
+
+.nf-star-two {
+  right: 23%;
+  bottom: 28px;
+  font-size: 35px;
+}
+
+/* Label */
+
+.nf-badge {
+  display: inline-block;
+  padding: 9px 17px;
+
+  background: #edf2e2;
+  border: 1px solid #dce8c8;
+  border-radius: 30px;
+
+  color: #58724c;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+}
+
+/* Heading */
+
+.nf-card h1 {
+  margin: 22px 0 13px;
+
+  color: #405641;
+  font-size: clamp(30px, 5vw, 43px);
+  line-height: 1.2;
+  letter-spacing: -1.2px;
+}
+
+.nf-card h1 span {
+  color: #829f64;
+}
+
+/* Description */
+
+.nf-description {
+  max-width: 510px;
+  margin: 0 auto 27px;
+
+  color: #788271;
+  font-size: 15px;
+  line-height: 1.8;
+}
+
+/* Buttons */
+
+.nf-actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 13px;
+}
+
+.nf-home-btn,
+.nf-back-btn {
+  min-height: 48px;
+  padding: 0 24px;
+  box-sizing: border-box;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+
+  border-radius: 12px;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 700;
   text-decoration: none;
-  font-weight: 600;
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
-.home-btn:hover {
-  opacity: 0.85;
+.nf-home-btn {
+  background: #a8bd83;
+  border: 1px solid #a8bd83;
+  color: #30452e;
+
+  box-shadow: 0 6px 16px rgba(105, 135, 78, 0.15);
+}
+
+.nf-home-btn:hover {
+  background: #97b173;
+  border-color: #97b173;
+  transform: translateY(-2px);
+  box-shadow: 0 9px 20px rgba(105, 135, 78, 0.2);
+}
+
+.nf-back-btn {
+  background: #fffef8;
+  border: 1px solid #d5dfc5;
+  color: #405641;
+}
+
+.nf-back-btn:hover {
+  background: #edf2e2;
+  transform: translateY(-2px);
+}
+
+/* Footer */
+
+.nf-footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+
+  margin-top: 32px;
+  padding-top: 18px;
+  border-top: 1px solid #e9ecdf;
+
+  color: #8a9581;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.nf-footer > span:first-child {
+  color: #829f64;
+}
+
+.nf-footer-brand {
+  width: 100%;
+  margin-top: 6px;
+
+  color: #829078;
+  font-weight: 500;
+  letter-spacing: 0;
+}
+
+/* Animation */
+
+@keyframes nf-appear {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Mobile Responsive */
+
+@media (max-width: 600px) {
+  .nf-page {
+    padding: 24px 13px;
+  }
+
+  .nf-card {
+    padding: 28px 18px 21px;
+    border-radius: 22px;
+  }
+
+  .nf-illustration {
+    height: 195px;
+  }
+
+  .nf-planet {
+    width: 150px;
+    height: 150px;
+    font-size: 53px;
+  }
+
+  .nf-orbit {
+    width: 205px;
+    height: 67px;
+  }
+
+  .nf-star-one {
+    left: 9%;
+  }
+
+  .nf-star-two {
+    right: 9%;
+  }
+
+  .nf-card h1 {
+    font-size: 31px;
+  }
+
+  .nf-description {
+    font-size: 14px;
+  }
+
+  .nf-actions {
+    flex-direction: column;
+  }
+
+  .nf-home-btn,
+  .nf-back-btn {
+    width: 100%;
+  }
+}
+
+/* Accessibility */
+
+@media (prefers-reduced-motion: reduce) {
+  .nf-card {
+    animation: none;
+  }
+
+  .nf-home-btn,
+  .nf-back-btn {
+    transition: none;
+  }
 }
