@@ -1,54 +1,186 @@
-
-.navbar {
-  width: 100%;
-  min-height: 72px;
-
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-
-  padding: 0 7%;
-
-  background: #cfe8d5;
-
-  border-bottom: 1px solid #b7d6be;
-
-  position: sticky;
-  top: 0;
-  z-index: 100;
+/* GIGNOVA — LIGHT CREAM & PISTA THEME */
+.gn-navbar { width: 100%; background: #f7f1e3; border-bottom: 1px solid #d5e4c8; position: sticky; top: 0; z-index: 1000; box-shadow: 0 4px 16px rgba(84,118,91,.08); }
+.gn-navbar-container { max-width: 1450px; margin: 0 auto; padding: 16px 4%; display: flex; align-items: center; justify-content: space-between; gap: 18px; }
+.gn-logo { display: flex; align-items: center; gap: 9px; flex-shrink: 0; background: transparent; border: 0; padding: 0; color: #46664c; font-size: 26px; font-weight: 800; letter-spacing: -.8px; cursor: pointer; }
+.gn-logo-icon { width: 38px; height: 38px; display: grid; place-items: center; background: #c8deb7; color: #46664c; border-radius: 12px; font-size: 24px; }
+.gn-logo-accent { color: #83a978; }
+.gn-nav-links { display: flex; align-items: center; justify-content: flex-end; flex-wrap: nowrap; gap: 5px; }
+.gn-nav-links > button, .gn-dropdown-trigger { border: none; border-radius: 10px; padding: 11px 13px; background: transparent; color: #54765b; font-size: 13px; font-weight: 600; white-space: nowrap; cursor: pointer; font-family: inherit; transition: background .2s ease, color .2s ease; }
+.gn-nav-links > button:hover, .gn-dropdown-trigger:hover, .gn-group-open > .gn-dropdown-trigger { background: #e5eedb; color: #36563d; }
+.gn-nav-links > .gn-login-btn { border: 1px solid #c8deb7; background: #f2f4e8; color: #46664c; }
+.gn-nav-links > .gn-signup-btn { background: #c8deb7; color: #36563d; font-weight: 700; }
+.gn-nav-links > .gn-signup-btn:hover { background: #b6d3a4; }
+.gn-dropdown-trigger.gn-profile-btn { background: #e0ecd5; color: #46664c; border: 1px solid #c5dbb6; }
+.gn-nav-group { position: relative; flex-shrink: 0; }
+.gn-chevron { display: inline-block; margin-left: 4px; font-size: 16px; transition: transform .2s ease; }
+.gn-group-open .gn-chevron { transform: rotate(180deg); }
+.gn-dropdown-menu { position: absolute; top: calc(100% + 8px); left: 0; min-width: 205px; padding: 8px; background: #fffdf5; border: 1px solid #d5e4c8; border-radius: 14px; box-shadow: 0 14px 32px rgba(57,89,61,.15); display: flex; flex-direction: column; gap: 3px; z-index: 1010; }
+.gn-dropdown-menu[hidden] { display: none; }
+.gn-dropdown-right { left: auto; right: 0; }
+.gn-dropdown-menu button { width: 100%; border: 0; background: transparent; text-align: left; padding: 11px 13px; border-radius: 9px; color: #46664c; font: 600 13px inherit; font-family: inherit; cursor: pointer; white-space: nowrap; }
+.gn-dropdown-menu button:hover { background: #e5eedb; }
+.gn-dropdown-menu .gn-logout-btn { background: #f5e8dd; color: #92624f; }
+.gn-dropdown-menu .gn-logout-btn:hover { background: #eed9c9; }
+.gn-menu-toggle { display: none; width: 44px; height: 44px; align-items: center; justify-content: center; background: #e5eedb; border: 1px solid #c8deb7; border-radius: 10px; color: #46664c; font-size: 24px; cursor: pointer; }
+.gn-logo:focus-visible, .gn-menu-toggle:focus-visible, .gn-nav-links button:focus-visible { outline: 3px solid #83a978; outline-offset: 3px; }
+@media (max-width: 1100px) {
+  .gn-navbar-container { padding: 14px 5%; }
+  .gn-menu-toggle { display: flex; }
+  .gn-nav-links { display: none; position: absolute; top: 100%; left: 0; right: 0; background: #f7f1e3; border-bottom: 1px solid #d5e4c8; box-shadow: 0 12px 25px rgba(84,118,91,.12); padding: 16px 5% 22px; flex-direction: column; align-items: stretch; flex-wrap: nowrap; gap: 7px; max-height: calc(100vh - 75px); overflow-y: auto; }
+  .gn-nav-links.gn-nav-open { display: flex; }
+  .gn-nav-links > button, .gn-dropdown-trigger { width: 100%; text-align: left; padding: 13px 16px; font-size: 14px; }
+  .gn-nav-group { width: 100%; }
+  .gn-dropdown-trigger { display: flex; align-items: center; justify-content: space-between; }
+  .gn-dropdown-menu, .gn-dropdown-right { position: static; min-width: 0; width: 100%; margin-top: 5px; margin-bottom: 5px; box-shadow: none; border-radius: 10px; background: #fffdf5; }
+  .gn-dropdown-menu button { white-space: normal; font-size: 14px; }
 }
+@media (max-width: 480px) { .gn-navbar-container { padding: 12px 5%; } .gn-logo { font-size: 22px; } .gn-logo-icon { width: 34px; height: 34px; } }
+@media (prefers-reduced-motion: reduce) { .gn-nav-links button, .gn-chevron { transition: none; } }
 
-.logo {
-  color: #355e3b;
-  font-size: 29px;
-  font-weight: 800;
+/* Notifications bell and unread count */
+.gn-nav-links > .gn-notifications-btn { display: inline-flex; align-items: center; justify-content: center; gap: 6px; }
+.gn-notifications-count { display: inline-flex; align-items: center; justify-content: center; min-width: 19px; height: 19px; padding: 0 5px; border-radius: 999px; background: #2e6947; color: white; font-size: 11px; font-weight: 700; }
+@media (max-width: 1100px) { .gn-nav-links > .gn-notifications-btn { justify-content: flex-start; } }
+
+/* Dark Mode / Light Mode Button */
+.gn-theme-toggle {
+  padding: 8px 14px;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  background: var(--theme-button-bg, #f0f0f0);
+  color: var(--theme-button-text, #111);
   cursor: pointer;
-}
-
-.nav-links {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-
-.nav-links button {
-  border: none;
-  background: transparent;
-
-  color: #355e3b;
-
-  padding: 10px 13px;
-
-  border-radius: 8px;
-
   font-size: 14px;
-  font-weight: 600;
-
-  transition: 0.2s;
+  font-weight: 500;
+  white-space: nowrap;
+  transition:
+    background 0.3s ease,
+    color 0.3s ease;
 }
 
-.nav-links button:hover {
-  background: #fff9ed;
+.gn-theme-toggle:hover {
+  opacity: 0.85;
 }
 
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .gn-theme-toggle {
+    width: fit-content;
+    margin: 8px 0;
+  }
+}
 
+/* ==========================================
+   GIGNOVA NAVBAR — THEME TOGGLE
+========================================== */
+
+.gn-navbar-theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+
+  padding: 9px 14px;
+  border-radius: 24px;
+
+  background: #edf5ed;
+  color: #315f43;
+
+  border: 1px solid #d4e6d6;
+
+  font-size: 13px;
+  font-weight: 700;
+  white-space: nowrap;
+
+  cursor: pointer;
+  transition:
+    background 0.25s ease,
+    color 0.25s ease,
+    transform 0.2s ease;
+}
+
+.gn-navbar-theme-toggle:hover {
+  background: #dcebdc;
+  transform: translateY(-2px);
+}
+
+.gn-navbar-theme-toggle:focus-visible {
+  outline: 3px solid #7da989;
+  outline-offset: 3px;
+}
+
+.gn-navbar-theme-icon {
+  font-size: 17px;
+  line-height: 1;
+}
+
+/* DARK MODE */
+
+:root[data-theme="dark"] .gn-navbar {
+  background: #17231b;
+  border-bottom: 1px solid #354b3b;
+  color: #edf6ef;
+}
+
+:root[data-theme="dark"] .gn-navbar-theme-toggle {
+  background: #2b4031;
+  color: #e0f4e4;
+  border-color: #4c6953;
+}
+
+:root[data-theme="dark"] .gn-navbar-theme-toggle:hover {
+  background: #395640;
+}
+
+/* Logo */
+
+:root[data-theme="dark"] .gn-logo {
+  color: #edf6ef;
+}
+
+:root[data-theme="dark"] .gn-logo-accent {
+  color: #9dd7ad;
+}
+
+/* Navigation buttons */
+
+:root[data-theme="dark"] .gn-nav-links > button:not(.gn-signup-btn),
+:root[data-theme="dark"] .gn-dropdown-trigger {
+  color: #edf6ef;
+}
+
+:root[data-theme="dark"] .gn-nav-links > button:hover,
+:root[data-theme="dark"] .gn-dropdown-trigger:hover {
+  background-color: #26392c;
+}
+
+/* Dropdown */
+
+:root[data-theme="dark"] .gn-dropdown-menu {
+  background: #1e2e23;
+  border: 1px solid #3b5342;
+  box-shadow: 0 15px 35px #0005;
+}
+
+:root[data-theme="dark"] .gn-dropdown-menu button {
+  color: #edf6ef;
+}
+
+:root[data-theme="dark"] .gn-dropdown-menu button:hover {
+  background: #304737;
+}
+
+/* Mobile menu */
+
+:root[data-theme="dark"] .gn-menu-toggle {
+  color: #edf6ef;
+  background: #26392c;
+  border-color: #405b47;
+}
+
+@media (max-width: 900px) {
+  .gn-navbar-theme-toggle {
+    width: 100%;
+    justify-content: center;
+  }
+}
