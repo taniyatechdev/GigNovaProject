@@ -1,0 +1,145 @@
+.auth-container {
+  min-height: calc(100vh - 72px);
+
+  display: flex;
+
+  justify-content: center;
+
+  align-items: center;
+
+  padding: 60px 20px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #fff9ed,
+      #f4f7eb,
+      #cfe8d5
+    );
+}
+
+.auth-box {
+  width: 100%;
+
+  max-width: 430px;
+
+  padding: 40px;
+
+  background: white;
+
+  border-radius: 20px;
+
+  box-shadow:
+    0 15px 40px rgba(53, 94, 59, 0.14);
+
+  text-align: center;
+}
+
+.auth-box h2 {
+  color: #355e3b;
+
+  font-size: 30px;
+
+  margin-bottom: 8px;
+}
+
+.auth-box > p {
+  color: #66736a;
+
+  margin-bottom: 25px;
+}
+
+
+/* AUTH FORM */
+
+.auth-box form {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 15px;
+}
+
+.auth-box input {
+  width: 100%;
+
+  padding: 14px 15px;
+
+  border: 1px solid #cfe8d5;
+
+  border-radius: 9px;
+
+  background: #fffdf7;
+
+  outline: none;
+
+  font-size: 15px;
+}
+
+.auth-box input:focus {
+  border-color: #7da886;
+
+  box-shadow:
+    0 0 0 3px rgba(125, 168, 134, 0.12);
+}
+
+.auth-box button {
+  width: 100%;
+
+  padding: 14px;
+
+  border: none;
+
+  border-radius: 9px;
+
+  background: #355e3b;
+
+  color: white;
+
+  font-size: 16px;
+
+  font-weight: 600;
+}
+
+.auth-box button:hover {
+  background: #294b2f;
+}
+
+
+/* ERROR */
+
+.error {
+  padding: 10px;
+
+  margin: 0 !important;
+
+  background: #fff0ef;
+
+  color: #d9534f !important;
+
+  border-radius: 8px;
+
+  font-size: 14px !important;
+}
+
+
+/* LOGIN / SIGNUP LINK */
+
+.auth-switch {
+  margin-top: 22px !important;
+
+  color: #66736a;
+}
+
+.auth-switch span {
+  color: #355e3b;
+
+  font-weight: 700;
+
+  cursor: pointer;
+}
+
+.auth-switch span:hover {
+  text-decoration: underline;
+}
+
